@@ -1,1 +1,1 @@
-This is a simply laravel crud
+This is a simple laravel crud
