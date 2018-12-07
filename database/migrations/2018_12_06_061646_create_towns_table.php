@@ -15,6 +15,7 @@ class CreateTownsTable extends Migration
     {
         Schema::create('towns', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unigue();
             $table->timestamps();
         });
     }
