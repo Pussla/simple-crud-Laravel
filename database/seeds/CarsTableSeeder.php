@@ -11,6 +11,6 @@ class CarsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $car = factory(\App\Car::class, 100)->create();
     }
 }
