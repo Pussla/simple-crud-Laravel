@@ -11,6 +11,6 @@ class PersonsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $car = factory(\App\Person::class, 100)->create();
     }
 }
