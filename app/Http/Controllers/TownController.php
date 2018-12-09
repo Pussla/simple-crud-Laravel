@@ -47,7 +47,9 @@ class TownController extends Controller
      */
     public function show($id)
     {
-        //
+        $town = Town::find($id);
+
+        return view('town.show')->with('town', $town);
     }
 
     /**
