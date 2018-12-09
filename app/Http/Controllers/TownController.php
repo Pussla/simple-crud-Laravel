@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Town;
 class TownController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class TownController extends Controller
      */
     public function index()
     {
-        //
+        $towns = Town::all();
+
+        return view('town.index')->with('towns', $towns);
     }
 
     /**

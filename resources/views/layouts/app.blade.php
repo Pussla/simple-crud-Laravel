@@ -4,7 +4,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
+        <div class="container mt-3">
             @yield('content')
         </div>
     </body>
