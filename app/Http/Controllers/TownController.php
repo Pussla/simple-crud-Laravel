@@ -25,7 +25,7 @@ class TownController extends Controller
      */
     public function create()
     {
-        //
+        return view('town.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class TownController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->has('Name')) {
+            $town = new Town();
+
+            $town->name = $request->Name;
+
+            $town->save();
+        }
+        return redirect('town');
     }
 
     /**
