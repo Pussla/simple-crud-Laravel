@@ -60,7 +60,9 @@ class TownController extends Controller
      */
     public function edit($id)
     {
-        //
+        $town = Town::find($id);
+
+        return view('town.edit')->with('town', $town);
     }
 
     /**
@@ -72,7 +74,15 @@ class TownController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+        $town = Town::find($id);
+
+        $town->name = $request->input('Name');
+
+        $town->save();
+
+        return redirect('town');
+       
     }
 
     /**
