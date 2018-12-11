@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Town;
 class TownController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class TownController extends Controller
      */
     public function index()
     {
-        //
+        $towns = Town::all();
+
+        return view('town.index')->with('towns', $towns);
     }
 
     /**
@@ -23,7 +25,7 @@ class TownController extends Controller
      */
     public function create()
     {
-        //
+        return view('town.create');
     }
 
     /**
@@ -34,7 +36,14 @@ class TownController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->has('Name')) {
+            $town = new Town();
+
+            $town->name = $request->Name;
+
+            $town->save();
+        }
+        return redirect('town');
     }
 
     /**
@@ -45,7 +54,9 @@ class TownController extends Controller
      */
     public function show($id)
     {
-        //
+        $town = Town::find($id);
+
+        return view('town.show')->with('town', $town);
     }
 
     /**
@@ -56,7 +67,9 @@ class TownController extends Controller
      */
     public function edit($id)
     {
-        //
+        $town = Town::find($id);
+
+        return view('town.edit')->with('town', $town);
     }
 
     /**
@@ -68,7 +81,15 @@ class TownController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+        $town = Town::find($id);
+
+        $town->name = $request->input('Name');
+
+        $town->save();
+
+        return redirect('town');
+       
     }
 
     /**
@@ -79,6 +100,10 @@ class TownController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $town = Town::find($id);
+
+        $town->delete();
+
+        return redirect('town');
     }
 }
