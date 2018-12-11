@@ -100,6 +100,10 @@ class TownController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $town = Town::find($id);
+
+        $town->delete();
+
+        return redirect('town');
     }
 }

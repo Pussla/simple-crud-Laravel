@@ -7,7 +7,9 @@
             <a class="btn btn-primary" href="/town/{{$town->id}}/edit" role="button">Edit</a>
         </div>
         <div class="row">
-            <a class="btn btn-danger" href="#" role="button">Delete</a>
+            {{Form::open(['route' => ['town.destroy', $town->id], 'method' => 'DELETE'])}}
+                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+            {{Form::close()}}
         </div>
     </div>    
 @endsection
