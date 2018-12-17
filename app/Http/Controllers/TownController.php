@@ -81,7 +81,6 @@ class TownController extends Controller
      */
     public function update(StoreTown $request, $id)
     {
-    
         $town = Town::find($id);
 
         $town->name = $request->Name;
@@ -105,5 +104,6 @@ class TownController extends Controller
         $town->delete();
 
         return redirect('town')->with('success','Town deleted');
+      
     }
 }
