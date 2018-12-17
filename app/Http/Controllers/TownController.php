@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTown;
 use App\Town;
 class TownController extends Controller
 {
@@ -34,16 +35,15 @@ class TownController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Storetown $request)
     {
-        if ($request->has('Name')) {
-            $town = new Town();
+        $town = new Town();
 
-            $town->name = $request->Name;
+        $town->name = $request->Name;
 
-            $town->save();
-        }
-        return redirect('town');
+        $town->save();
+
+        return redirect('town')->with('success', 'Town Added');
     }
 
     /**
@@ -79,16 +79,15 @@ class TownController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTown $request, $id)
     {
-    
         $town = Town::find($id);
 
-        $town->name = $request->input('Name');
+        $town->name = $request->Name;
 
         $town->save();
 
-        return redirect('town');
+        return redirect('town')->with('success', 'Town updated');
        
     }
 
@@ -104,6 +103,7 @@ class TownController extends Controller
 
         $town->delete();
 
-        return redirect('town');
+        return redirect('town')->with('success','Town deleted');
+      
     }
 }
