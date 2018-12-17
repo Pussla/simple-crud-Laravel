@@ -15,7 +15,6 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
-        
         return view('car.index')->with('cars', $cars);
     }
 
@@ -26,7 +25,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('car.create');
     }
 
     /**
@@ -37,7 +36,17 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $car = new Car();
+
+        $car->mark = $request->Mark;
+
+        $car->model = $request->Model;
+
+        $car->year_of_production = $request->Year;
+
+        $car->save();
+
+        return redirect('car');
     }
 
     /**
@@ -48,7 +57,9 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        $car = Car::find($id);
+
+        return view('car.show')->with('car', $car);
     }
 
     /**
@@ -59,7 +70,9 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $car = Car::find($id);
+
+        return view('car.edit')->with('car', $car);
     }
 
     /**
@@ -71,7 +84,17 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $car = Car::find($id);
+
+        $car->mark = $request->Mark;
+
+        $car->model = $request->Model;
+
+        $car->year_of_production = $request->Year;
+
+        $car->save();
+
+        return redirect('car');
     }
 
     /**
@@ -82,6 +105,10 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car = Car::find($id);
+
+        $car->delete();
+
+        return redirect('car');
     }
 }
