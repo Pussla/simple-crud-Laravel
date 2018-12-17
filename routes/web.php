@@ -17,3 +17,5 @@ Route::get('/', function () {
 });
 
 Route::resource('town', 'TownController');
+
+Route::resource('car', 'CarController');
