@@ -42,8 +42,8 @@ class TownController extends Controller
         $town->name = $request->Name;
 
         $town->save();
-       
-        return redirect('town');
+
+        return redirect('town')->with('success', 'Town Added');
     }
 
     /**
@@ -88,7 +88,7 @@ class TownController extends Controller
 
         $town->save();
 
-        return redirect('town');
+        return redirect('town')->with('success', 'Town updated');
        
     }
 
@@ -104,6 +104,6 @@ class TownController extends Controller
 
         $town->delete();
 
-        return redirect('town');
+        return redirect('town')->with('success','Town deleted');
     }
 }
