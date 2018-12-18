@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCar;
 use App\Car;
 
 class CarController extends Controller
@@ -15,6 +16,7 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::all();
+        
         return view('car.index')->with('cars', $cars);
     }
 
@@ -34,7 +36,7 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCar $request)
     {
         $car = new Car();
 
@@ -46,7 +48,7 @@ class CarController extends Controller
 
         $car->save();
 
-        return redirect('car');
+        return redirect('car')->with('success', 'Car created');
     }
 
     /**
@@ -82,7 +84,7 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCar $request, $id)
     {
         $car = Car::find($id);
 
@@ -94,7 +96,7 @@ class CarController extends Controller
 
         $car->save();
 
-        return redirect('car');
+        return redirect('car')->with('success', 'Car updated');
     }
 
     /**
@@ -109,6 +111,6 @@ class CarController extends Controller
 
         $car->delete();
 
-        return redirect('car');
+        return redirect('car')->with('success', 'Car deleted');
     }
 }

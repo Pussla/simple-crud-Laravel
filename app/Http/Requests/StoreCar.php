@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTown extends FormRequest
+class StoreCar extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class StoreTown extends FormRequest
     public function rules()
     {
         return [
-            'Name' => 'required|alpha|unique:towns|max:30',
+            'Mark' => 'required|max:30',
+            'Model' => 'required|max:30',
+            'Year' => 'required|integer|before:today',
         ];
     }
 }
