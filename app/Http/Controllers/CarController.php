@@ -48,7 +48,7 @@ class CarController extends Controller
 
         $car->save();
 
-        return redirect('car');
+        return redirect('car')->with('success', 'Car created');
     }
 
     /**
@@ -84,7 +84,7 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCar $request, $id)
     {
         $car = Car::find($id);
 
@@ -96,7 +96,7 @@ class CarController extends Controller
 
         $car->save();
 
-        return redirect('car');
+        return redirect('car')->with('success', 'Car updated');
     }
 
     /**
@@ -111,6 +111,6 @@ class CarController extends Controller
 
         $car->delete();
 
-        return redirect('car');
+        return redirect('car')->with('success', 'Car deleted');
     }
 }
