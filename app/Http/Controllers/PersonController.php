@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePerson;
 use App\Person;
 use App\Car;
 use App\Town;
@@ -37,7 +38,7 @@ class PersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePerson $request)
     {
         $person = new Person();
 
@@ -99,7 +100,7 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePerson $request, $id)
     {
         $person = Person::find($id);
 
