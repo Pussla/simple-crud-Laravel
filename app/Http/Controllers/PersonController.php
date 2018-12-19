@@ -83,7 +83,13 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $person = Person::find($id);
+
+        $car = Car::find($person->car_id);
+
+        $town = Town::find($person->town_id);
+
+        return view('person.edit', ['person' => $person, 'car' => $car, 'town' => $town]);
     }
 
     /**
@@ -95,7 +101,21 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $person = Person::find($id);
+
+        $person->name = $request->Name;
+
+        $person->Lastname = $request->Lastname;
+
+        $person->car_id = $request->Car_id;
+
+        $person->town_id = $request->Town_id;
+
+        $person->birth_year = $request->Birth_year;
+
+        $person->save();
+
+        return redirect('person');
     }
 
     /**
