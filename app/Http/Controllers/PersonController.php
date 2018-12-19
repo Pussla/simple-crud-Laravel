@@ -28,7 +28,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('person.create');
     }
 
     /**
@@ -39,7 +39,23 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $person = new Person();
+
+        $person->name = $request->Name;
+
+        $person->lastname = $request->Lastname;
+
+        $person->car_id = $request->Car_id;
+
+        $person->town_id = $request->Town_id;
+
+        $person->birth_year = $request->Birth_year;
+
+        $person->save();
+
+        return redirect('person');
+
+
     }
 
     /**

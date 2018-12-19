@@ -10,10 +10,10 @@
     </ul>   
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/car/{{$car->id}}/edit" role="button">Edit</a>
+            <a class="btn btn-primary" href="/person/{{$person->id}}/edit" role="button">Edit</a>
         </div>
         <div class="row mr-3">
-            {{Form::open(['route' => ['car.destroy', $car->id], 'method' => 'DELETE'])}}
+            {{Form::open(['route' => ['person.destroy', $person->id], 'method' => 'DELETE'])}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {{Form::close()}}
         </div>
