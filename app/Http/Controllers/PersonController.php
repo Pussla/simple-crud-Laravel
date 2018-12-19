@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Person;
+use App\Car;
+use App\Town;
 
 class PersonController extends Controller
 {
@@ -13,7 +16,9 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $persons = Person::all();
+
+        return view('person.index')->with('persons', $persons);
     }
 
     /**
@@ -45,7 +50,13 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        //
+        $person = Person::find($id);
+
+        $town = Town::find($person->town_id);
+
+        $car = Car::find($person->car_id);
+
+        return view('person.show', ['person' => $person, 'town' => $town, 'car' => $car]);
     }
 
     /**
