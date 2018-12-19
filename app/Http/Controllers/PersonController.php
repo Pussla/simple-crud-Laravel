@@ -117,6 +117,7 @@ class PersonController extends Controller
         $person->save();
 
         return redirect('person')->with('success', 'Person updated');
+
     }
 
     /**
@@ -132,5 +133,6 @@ class PersonController extends Controller
         $person->delete();
 
         return redirect('person')->with('success', 'Person deleted');
+     
     }
 }
