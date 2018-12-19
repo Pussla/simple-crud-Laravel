@@ -26,7 +26,7 @@ class StorePerson extends FormRequest
         return [
             'Name' => 'required|alpha|max:20',
             'Lastname' => 'required|alpha|max:30',
-            'Car_id' => 'integer|unique:persons|exists:cars,id',
+            'Car_id' => 'integer|exists:cars,id',
             'Town_id' => 'required|integer|exists:towns,id',
             'Birth_year' => 'required|integer',
         ];
