@@ -8,4 +8,8 @@
       <a href="/town/{{$town->id}}" class="list-group-item list-group-item-action">{{$town->name}}</a>
       @endforeach
     </div>
+
+    <div class="mt-3">
+      {{$towns->links()}}
+    </div>
 @endsection

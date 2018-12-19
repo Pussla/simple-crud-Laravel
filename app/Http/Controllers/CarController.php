@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCar;
 use App\Car;
+use DB;
 
 class CarController extends Controller
 {
@@ -15,8 +16,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-        
+        $cars = DB::table('cars')->paginate(15);
+
         return view('car.index')->with('cars', $cars);
     }
 

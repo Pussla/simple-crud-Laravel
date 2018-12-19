@@ -7,6 +7,7 @@ use App\Http\Requests\StorePerson;
 use App\Person;
 use App\Car;
 use App\Town;
+use DB; 
 
 class PersonController extends Controller
 {
@@ -17,7 +18,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons = Person::all();
+        $persons = DB::table('persons')->paginate(15);
 
         return view('person.index')->with('persons', $persons);
     }

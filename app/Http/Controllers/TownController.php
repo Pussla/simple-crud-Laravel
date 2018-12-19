@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTown;
 use App\Town;
+use DB;
+
 class TownController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class TownController extends Controller
      */
     public function index()
     {
-        $towns = Town::all();
+        $towns = DB::table('towns')->paginate(15);
 
         return view('town.index')->with('towns', $towns);
     }

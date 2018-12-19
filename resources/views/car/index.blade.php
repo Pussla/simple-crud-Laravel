@@ -8,4 +8,8 @@
         <a href="/car/{{$car->id}}" class="list-group-item list-group-item-action">{{$car->mark}} {{$car->model}}</a>
       @endforeach
     </div>
+
+    <div class="mt-3">
+      {{$cars->links()}}
+    </div>
 @endsection
