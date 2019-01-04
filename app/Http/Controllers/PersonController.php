@@ -18,7 +18,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons = DB::table('persons')->paginate(15);
+        $persons = Person::paginate(15);
 
         return view('person.index')->with('persons', $persons);
     }
@@ -70,9 +70,9 @@ class PersonController extends Controller
     {
         $person = Person::find($id);
 
-        $town = Town::find($person->town_id);
+        $town = Person::find($id)->town()->first();
 
-        $car = Car::find($person->car_id);
+        $car = Person::find($id)->car()->first();
 
         return view('person.show', ['person' => $person, 'town' => $town, 'car' => $car]);
     }

@@ -26,7 +26,7 @@ class StoreCar extends FormRequest
         return [
             'Mark' => 'required|max:30',
             'Model' => 'required|max:30',
-            'Year' => 'required|integer|before:today',
+            'Year' => 'required|integer',
         ];
     }
 }

@@ -16,7 +16,7 @@ class TownController extends Controller
      */
     public function index()
     {
-        $towns = DB::table('towns')->paginate(15);
+        $towns = Town::paginate(15);
 
         return view('town.index')->with('towns', $towns);
     }

@@ -16,7 +16,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = DB::table('cars')->paginate(15);
+        $cars = Car::paginate(15);
 
         return view('car.index')->with('cars', $cars);
     }
