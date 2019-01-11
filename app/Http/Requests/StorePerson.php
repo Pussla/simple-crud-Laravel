@@ -24,11 +24,11 @@ class StorePerson extends FormRequest
     public function rules()
     {
         return [
-            'Name' => 'required|alpha|max:20',
-            'Lastname' => 'required|alpha|max:30',
-            'Car_id' => 'integer|exists:cars,id',
-            'Town_id' => 'required|integer|exists:towns,id',
-            'Birth_year' => 'required|integer',
+            'name' => 'required|alpha|max:20',
+            'lastname' => 'required|alpha|max:30',
+            'car_id' => 'integer|exists:cars,id',
+            'town_id' => 'required|integer|exists:towns,id',
+            'birth_year' => 'required|integer',
         ];
     }
 }

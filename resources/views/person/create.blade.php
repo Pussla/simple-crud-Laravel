@@ -5,27 +5,27 @@
 
         <div class="form-group">
             {{Form::label("Name", null) }}
-            {{Form::text("Name", null, [ 'class' => 'form-control'])}}
+            {{Form::text("name", null, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">   
             {{Form::label("Lastname", null) }}
-            {{Form::text("Lastname", null, [ 'class' => 'form-control'])}}
+            {{Form::text("lastname", null, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">   
             {{Form::label("Car id", null) }}
-            {{Form::text("Car_id", null, [ 'class' => 'form-control'])}}
+            {{Form::text("car_id", null, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">   
             {{Form::label("Town id", null) }}
-            {{Form::text("Town_id", null, [ 'class' => 'form-control'])}}
+            {{Form::text("town_id", null, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">   
             {{Form::label("Birth of year", null) }}
-            {{Form::text("Birth_year", null, [ 'class' => 'form-control'])}}
+            {{Form::text("birth_year", null, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">

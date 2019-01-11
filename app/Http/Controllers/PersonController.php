@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePerson;
-use App\Person;
-use App\Car;
-use App\Town;
-use DB; 
+use App\Repositories\PersonRepository;
 
 class PersonController extends Controller
 {
@@ -16,11 +13,16 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $person;
+
+    public function __construct(Person $person)
+    {
+        $this->person = new PersonRepository($person);
+    }
+
     public function index()
     {
-        $persons = Person::paginate(15);
-
-        return view('person.index')->with('persons', $persons);
+        return view('person.index')->with('persons', $this->person->all());
     }
 
     /**
@@ -41,23 +43,15 @@ class PersonController extends Controller
      */
     public function store(StorePerson $request)
     {
-        $person = new Person();
-
-        $person->name = $request->Name;
-
-        $person->lastname = $request->Lastname;
-
-        $person->car_id = $request->Car_id;
-
-        $person->town_id = $request->Town_id;
-
-        $person->birth_year = $request->Birth_year;
-
-        $person->save();
+        $this->person->create($request->only(
+            'name',
+            'lastname',
+            'car_id',
+            'town_id',
+            'birth_year'
+        ));
 
         return redirect('person')->with('success', 'Person created');
-
-
     }
 
     /**
@@ -68,11 +62,11 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        $person = Person::find($id);
+        $person = $this->person->show($id);
 
-        $town = Person::find($id)->town()->first();
+        $town = $this->person->show($id)->town()->first();
 
-        $car = Person::find($id)->car()->first();
+        $car = $this->person->show($id)->car()->first();
 
         return view('person.show', ['person' => $person, 'town' => $town, 'car' => $car]);
     }
@@ -85,11 +79,11 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        $person = Person::find($id);
+        $person = $this->person->show($id);
 
-        $car = Car::find($person->car_id);
+        $town = $this->person->show($id)->town()->first();
 
-        $town = Town::find($person->town_id);
+        $car = $this->person->show($id)->car()->first();   
 
         return view('person.edit', ['person' => $person, 'car' => $car, 'town' => $town]);
     }
@@ -103,22 +97,15 @@ class PersonController extends Controller
      */
     public function update(StorePerson $request, $id)
     {
-        $person = Person::find($id);
-
-        $person->name = $request->Name;
-
-        $person->Lastname = $request->Lastname;
-
-        $person->car_id = $request->Car_id;
-
-        $person->town_id = $request->Town_id;
-
-        $person->birth_year = $request->Birth_year;
-
-        $person->save();
+        $this->person->update($id, $request->only(
+            'name',
+            'lastname',
+            'car_id',
+            'town_id',
+            'birth_year'
+        ));
 
         return redirect('person')->with('success', 'Person updated');
-
     }
 
     /**
@@ -129,11 +116,8 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        $person = Person::find($id);
-
-        $person->delete();
+        $this->person->delete($id);
 
         return redirect('person')->with('success', 'Person deleted');
-     
     }
 }

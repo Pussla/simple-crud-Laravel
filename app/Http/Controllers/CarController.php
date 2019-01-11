@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCar;
+use App\Repositories\CarRepository;
 use App\Car;
-use DB;
 
 class CarController extends Controller
 {
@@ -14,11 +14,15 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $car;
+
+    public function __construct(Car $car)
+    {
+        $this->car = new CarRepository($car);
+    }
     public function index()
     {
-        $cars = Car::paginate(15);
-
-        return view('car.index')->with('cars', $cars);
+        return view('car.index')->with('cars', $this->car->all());
     }
 
     /**
@@ -39,15 +43,7 @@ class CarController extends Controller
      */
     public function store(StoreCar $request)
     {
-        $car = new Car();
-
-        $car->mark = $request->Mark;
-
-        $car->model = $request->Model;
-
-        $car->year_of_production = $request->Year;
-
-        $car->save();
+        $this->car->create($request->only('mark', 'model', 'year_of_production'));
 
         return redirect('car')->with('success', 'Car created');
     }
@@ -60,9 +56,7 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        $car = Car::find($id);
-
-        return view('car.show')->with('car', $car);
+        return view('car.show')->with('car', $this->car->show($id));
     }
 
     /**
@@ -73,9 +67,7 @@ class CarController extends Controller
      */
     public function edit($id)
     {
-        $car = Car::find($id);
-
-        return view('car.edit')->with('car', $car);
+        return view('car.edit')->with('car', $this->car->show($id));
     }
 
     /**
@@ -87,15 +79,7 @@ class CarController extends Controller
      */
     public function update(StoreCar $request, $id)
     {
-        $car = Car::find($id);
-
-        $car->mark = $request->Mark;
-
-        $car->model = $request->Model;
-
-        $car->year_of_production = $request->Year;
-
-        $car->save();
+        $this->car->update($id, $request->only('mark', 'model', 'year_of_production'));
 
         return redirect('car')->with('success', 'Car updated');
     }
@@ -108,9 +92,7 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        $car = Car::find($id);
-
-        $car->delete();
+        $this->car->delete($id);
 
         return redirect('car')->with('success', 'Car deleted');
     }

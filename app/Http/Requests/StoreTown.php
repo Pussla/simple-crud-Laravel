@@ -24,7 +24,7 @@ class StoreTown extends FormRequest
     public function rules()
     {
         return [
-            'Name' => 'required|alpha|unique:towns|max:30',
+            'name' => 'required|alpha|unique:towns|max:30',
         ];
     }
 }

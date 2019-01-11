@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTown;
+use App\Repositories\TownRepository;
 use App\Town;
-use DB;
 
 class TownController extends Controller
 {
@@ -14,11 +14,16 @@ class TownController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $town;
+
+    public function __construct(Town $town)
+    {
+        $this->town = new TownRepository($town);
+    }
+
     public function index()
     {
-        $towns = Town::paginate(15);
-
-        return view('town.index')->with('towns', $towns);
+        return view('town.index')->with('towns', $this->town->all());
     }
 
     /**
@@ -39,11 +44,7 @@ class TownController extends Controller
      */
     public function store(Storetown $request)
     {
-        $town = new Town();
-
-        $town->name = $request->Name;
-
-        $town->save();
+        $this->town->create($request->only('name'));
 
         return redirect('town')->with('success', 'Town Added');
     }
@@ -56,9 +57,7 @@ class TownController extends Controller
      */
     public function show($id)
     {
-        $town = Town::find($id);
-
-        return view('town.show')->with('town', $town);
+        return view('town.show')->with('town', $this->town->show($id));
     }
 
     /**
@@ -69,9 +68,7 @@ class TownController extends Controller
      */
     public function edit($id)
     {
-        $town = Town::find($id);
-
-        return view('town.edit')->with('town', $town);
+        return view('town.edit')->with('town', $this->town->show($id));
     }
 
     /**
@@ -83,13 +80,9 @@ class TownController extends Controller
      */
     public function update(StoreTown $request, $id)
     {
-        $town = Town::find($id);
+        $this->town->update($id, $request->only('name'));
 
-        $town->name = $request->Name;
-
-        $town->save();
-
-        return redirect('town')->with('success', 'Town updated');
+        return redirect('town')->with('success, Town updated');
        
     }
 
@@ -101,11 +94,8 @@ class TownController extends Controller
      */
     public function destroy($id)
     {
-        $town = Town::find($id);
-
-        $town->delete();
+       $this->town->delete($id);
 
         return redirect('town')->with('success','Town deleted');
-      
     }
 }

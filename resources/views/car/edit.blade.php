@@ -5,17 +5,17 @@
 
         <div class="form-group">
             {{Form::label("Mark", null) }}
-            {{Form::text("Mark", $car->mark, [ 'class' => 'form-control'])}}
+            {{Form::text("mark", $car->mark, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">   
             {{Form::label("Model", null) }}
-            {{Form::text("Model", $car->model, [ 'class' => 'form-control'])}}
+            {{Form::text("model", $car->model, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">   
             {{Form::label("Year", null) }}
-            {{Form::text("Year", $car->year_of_production, [ 'class' => 'form-control'])}}
+            {{Form::text("year_of_production", $car->year_of_production, [ 'class' => 'form-control'])}}
         </div>
 
         <div class="form-group">
