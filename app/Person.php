@@ -19,5 +19,4 @@ class Person extends Model
     {
         return $this->hasOne('App\Town', 'id', 'town_id');
     }
-
 }

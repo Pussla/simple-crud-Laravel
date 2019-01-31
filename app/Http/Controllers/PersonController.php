@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdatePerson;
 use App\Http\Requests\StorePerson;
+use App\Http\Requests\DeletePerson;
 use App\Repositories\PersonRepository;
+use App\Person;
 
 class PersonController extends Controller
 {
@@ -95,7 +98,7 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePerson $request, $id)
+    public function update(UpdatePerson $request, $id)
     {
         $this->person->update($id, $request->only(
             'name',
@@ -114,9 +117,9 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeletePerson $request)
     {
-        $this->person->delete($id);
+        $this->person->delete($request->input('id'));
 
         return redirect('person')->with('success', 'Person deleted');
     }

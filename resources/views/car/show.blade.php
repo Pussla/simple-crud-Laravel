@@ -12,6 +12,7 @@
         </div>
         <div class="row mr-3">
             {{Form::open(['route' => ['car.destroy', $car->id], 'method' => 'DELETE'])}}
+                {{Form::hidden('id', $car->id)}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {{Form::close()}}
         </div>

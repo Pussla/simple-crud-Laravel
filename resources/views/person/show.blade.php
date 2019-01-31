@@ -14,6 +14,7 @@
         </div>
         <div class="row mr-3">
             {{Form::open(['route' => ['person.destroy', $person->id], 'method' => 'DELETE'])}}
+                {{Form::hidden('id', $person->id)}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {{Form::close()}}
         </div>

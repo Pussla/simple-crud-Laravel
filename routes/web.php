@@ -13,7 +13,6 @@
 
 Route::get('/', function () {
     return view('home');
-
 });
 
 Route::resource('town', 'TownController');

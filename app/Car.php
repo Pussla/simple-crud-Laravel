@@ -12,5 +12,4 @@ class Car extends Model
     {
         return $this->belognsTo('App\Person');
     }
-  
 }

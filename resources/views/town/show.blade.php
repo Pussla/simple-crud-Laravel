@@ -8,6 +8,7 @@
         </div>
         <div class="row">
             {{Form::open(['route' => ['town.destroy', $town->id], 'method' => 'DELETE'])}}
+                {{Form::hidden('id', $town->id)}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {{Form::close()}}
         </div>

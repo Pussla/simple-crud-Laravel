@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCar;
 use App\Http\Requests\StoreCar;
+use App\Http\Requests\DeleteCar;
 use App\Repositories\CarRepository;
 use App\Car;
 
@@ -77,7 +79,7 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCar $request, $id)
+    public function update(UpdateCar $request, $id)
     {
         $this->car->update($id, $request->only('mark', 'model', 'year_of_production'));
 
@@ -90,9 +92,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeleteCar $request)
     {
-        $this->car->delete($id);
+        $this->car->delete($request->input('id'));
 
         return redirect('car')->with('success', 'Car deleted');
     }

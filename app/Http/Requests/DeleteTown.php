@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\townNoExist;
 
-class StoreTown extends FormRequest
+class DeleteTown extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,7 @@ class StoreTown extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:towns|max:30',
+            'id' => ['required','integer', new townNoExist],
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateTown;
+use App\Http\Requests\DeleteTown;
 use App\Http\Requests\StoreTown;
 use App\Repositories\TownRepository;
 use App\Town;
@@ -78,12 +80,11 @@ class TownController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreTown $request, $id)
+    public function update(UpdateTown $request, $id)
     {
         $this->town->update($id, $request->only('name'));
 
-        return redirect('town')->with('success, Town updated');
-       
+        return redirect('town')->with('success', 'Town updated');
     }
 
     /**
@@ -92,9 +93,9 @@ class TownController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeleteTown $request)
     {
-       $this->town->delete($id);
+        $this->town->delete($request->get('id'));
 
         return redirect('town')->with('success','Town deleted');
     }
