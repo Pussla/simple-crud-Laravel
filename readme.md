@@ -1,11 +1,11 @@
 # simple-crud-Laravel
 This is a simple project to teach me the basics of Laravel and the repository pattern.
 
-# Tasks
+# Features
 
 -The user can manage the database
 
--Each activity on the base is appropriately validated
+-Each activity on the database is appropriately validated
 
 -The repository pattern is used in the project
 
