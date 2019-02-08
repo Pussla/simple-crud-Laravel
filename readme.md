@@ -8,9 +8,3 @@ This is a simple project to teach me the basics of Laravel and the repository pa
 -Each activity on the database is appropriately validated
 
 -The repository pattern is used in the project
-
-# what i've learned
-
--The basics of the Laravel
-
--Repository Pattern
