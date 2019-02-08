@@ -13,4 +13,4 @@ This is a simple project to teach me the basics of Laravel and the repository pa
 
 -The basics of the Laravel
 
--Repossitory Pattern
+-Repository Pattern
